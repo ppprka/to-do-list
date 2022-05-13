@@ -1,0 +1,5 @@
+<nav class="navbar" style=" background-color: slateblue">
+    <p class="header-logo header-text">TODO LIST</p>
+</nav>
+<app-add-button (onSubmitSend)="addTask($event)"></app-add-button>
+<app-item-list [tasks]="tasks"></app-item-list>

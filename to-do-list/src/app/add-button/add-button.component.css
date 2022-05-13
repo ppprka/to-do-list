@@ -1,0 +1,19 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  /*background-color: #efefef;*/
+}
+
+.row {
+  margin-left: 1rem;
+  width: 50%;
+  display: flex;
+  border: slateblue solid;
+  border-radius: 0.5rem;
+  padding: 0.375rem 0;
+  background-color: #efefef;
+}
