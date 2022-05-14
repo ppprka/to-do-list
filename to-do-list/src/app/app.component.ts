@@ -8,13 +8,14 @@ import {Component, OnInit} from '@angular/core';
 export class AppComponent implements OnInit{
 
   public tasks: string [] = [];
+  public color: string = '';
+  public hideTasksFlag: boolean = false;
 
   ngOnInit() {
     this.tasks = JSON.parse(localStorage.getItem('tasks'))||[];
   }
 
   addTask(task: string) {
-    console.log(task);
     this.tasks.push(task);
     localStorage.setItem('tasks', JSON.stringify(this.tasks))
   }
@@ -26,11 +27,17 @@ export class AppComponent implements OnInit{
 
   saveTask(task: string, index: number){
     this.tasks[index] = task;
-    console.log(task)
     localStorage.setItem('tasks', JSON.stringify(this.tasks))
   }
 
+  changeColor(){
+    this.color = Math.floor(Math.random()*16777215).toString(16);
+  }
 
+  hideTasks(){
+    this.hideTasksFlag ? this.hideTasksFlag = false : this.hideTasksFlag = true;
+    console.log(this.hideTasksFlag)
+  }
 
 
 }

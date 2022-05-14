@@ -8,6 +8,7 @@ import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angula
 export class ItemListComponent implements OnInit {
 
   @Input() public task!: string;
+  @Input() public hideTasksFlag: boolean;
   @Output() public itemDeleted = new EventEmitter<void>();
   @Output() public itemSave = new EventEmitter<string>();
 
@@ -16,7 +17,6 @@ export class ItemListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {}
-
 
   onEdit(task: string){
     this.disabled = false;

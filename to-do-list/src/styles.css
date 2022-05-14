@@ -47,6 +47,15 @@ ul {
   background-color: slateblue;
   border-color: #000000;
 }
+.btn-change {
+  color: #fff;
+  background-color: #ff892d;
+  border-color: #000000;
+}
+
+.btn-right {
+  margin-right: 0.5rem
+}
 
 .form-control {
   margin-left: 0.5rem;

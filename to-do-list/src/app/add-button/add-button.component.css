@@ -1,15 +1,17 @@
 .container {
+  width: 100%;
   position: relative;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  /*background-color: #efefef;*/
+  justify-content: space-between;
 }
 
 .row {
   margin-left: 1rem;
+  margin-right: 1rem;
   width: 50%;
   display: flex;
   border: slateblue solid;

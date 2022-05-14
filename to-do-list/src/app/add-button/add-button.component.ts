@@ -8,17 +8,26 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 export class AddButtonComponent implements OnInit {
 
   public task!: string;
+
   @Output() submitSend = new EventEmitter<string>();
+  @Output() hideTasksFlag = new EventEmitter<void>();
+
+  public hidden: boolean = true;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  onSubmit() {
+  submitTask() {
     this.submitSend.emit(this.task);
     console.log(this.task);
     this.task = '';
+  }
+
+  hideTasks(hidden: boolean) {
+    this.hideTasksFlag.emit()
+    this.hidden = hidden;
   }
 
 }

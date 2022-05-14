@@ -5,12 +5,16 @@ import { AppComponent } from './app.component';
 import { AddButtonComponent } from './add-button/add-button.component';
 import { ItemListComponent } from './item-list/item-list.component';
 import {FormsModule} from "@angular/forms";
+import { ColorDirective } from './app.directive';
+import { HideDirective } from './item-list/hide.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddButtonComponent,
-    ItemListComponent
+    ItemListComponent,
+    ColorDirective,
+    HideDirective
   ],
   imports: [
     BrowserModule,
