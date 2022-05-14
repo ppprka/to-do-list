@@ -1,10 +1,11 @@
-<div class="container">
-  <ul *ngFor="let task of tasks">
-    <li class="row">
-      <input type="text" class="form-control" [value]="task" [readonly]="disabled" placeholder="{{task}}">
-      <button type="button" class="btn btn-save"  (click)="onEdit(task)"  *ngIf="disabled">Изменить</button>
-      <button type="button" class="btn btn-save"  (click)="onSave(task)" *ngIf="!disabled">Сохранить</button>
+<div style="margin-top: 0.5rem">
+  <div class="container">
+    <div class="row">
+      <input  type="text" class="form-control" [(ngModel)]="task" [readonly]="disabled" placeholder="{{task}}">
+      <button *ngIf="disabled" type="button" class="btn btn-save"  (click)="onEdit(task)" >Изменить</button>
+      <button *ngIf="!disabled" type="button" class="btn btn-save"  (click)="onSave(task)">Сохранить</button>
       <button type="button" class="btn btn-save" style="margin-right: 0.5rem" (click)="onDelete(task)">Удалить</button>
-    </li>
-  </ul>
+    </div>
+  </div>
 </div>
+

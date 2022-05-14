@@ -3,16 +3,14 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  padding-bottom: 1rem;
-  margin-top: 1rem;
   /*background-color: #efefef;*/
 }
 
 .row {
   margin-left: 1rem;
   margin-right: 1rem;
-  margin-bottom: 1rem;
-  width: auto;
+  margin-bottom: 0.5rem;
+  width: 100%;
   display: flex;
   border: #cdcaf5 solid;
   border-radius: 0.5rem;

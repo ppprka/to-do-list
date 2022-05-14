@@ -8,15 +8,16 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 export class AddButtonComponent implements OnInit {
 
   public task!: string;
-  @Output() onSubmitSend = new EventEmitter<string>();
+  @Output() submitSend = new EventEmitter<string>();
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
   onSubmit() {
-    this.onSubmitSend.emit(this.task);
+    this.submitSend.emit(this.task);
+    console.log(this.task);
     this.task = '';
   }
 

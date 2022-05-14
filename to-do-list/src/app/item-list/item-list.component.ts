@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-item-list',
@@ -7,14 +7,16 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ItemListComponent implements OnInit {
 
-  @Input() tasks: Array<string> = [];
+  @Input() public task!: string;
+  @Output() public itemDeleted = new EventEmitter<void>();
+  @Output() public itemSave = new EventEmitter<string>();
 
-  public task: string = '';
   public disabled: boolean = true;
 
   constructor() { }
 
   ngOnInit(): void {}
+
 
   onEdit(task: string){
     this.disabled = false;
@@ -23,10 +25,12 @@ export class ItemListComponent implements OnInit {
   onSave(task:string){
     this.task = task;
     this.disabled = true;
+    console.log(task)
+    this.itemSave.emit(this.task);
   }
 
   onDelete(task: string) {
-    this.tasks.splice(this.tasks.indexOf(task),1);
+    this.itemDeleted.emit();
   }
 
 }
