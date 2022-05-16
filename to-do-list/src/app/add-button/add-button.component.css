@@ -12,10 +12,14 @@
 .row {
   margin-left: 1rem;
   margin-right: 1rem;
-  width: 50%;
+  width: 100%;
   display: flex;
   border: slateblue solid;
   border-radius: 0.5rem;
   padding: 0.375rem 0;
   background-color: #efefef;
+}
+
+.btn-add {
+  margin-left: 0;
 }

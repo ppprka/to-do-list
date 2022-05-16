@@ -1,7 +1,15 @@
 <div class="container">
-  <div class="row">
-    <input type="text" class="form-control" placeholder="Задача..." [(ngModel)]="task">
-    <button type="button" class="btn btn-save" (click)="submitTask()">Добавить</button>
+  <div [formGroup]="form" class="row">
+    <div style="display: flex; width: 50%">
+      <input type="text" class="form-control" formControlName="task" placeholder="Задача...">
+      <div class="btn btn-save check-div">
+        <label for="important">Важно</label>
+        <input type="checkbox" class="check-box" id="important" formControlName="important">
+      </div>
+    </div>
+    <button [disabled]="!form.valid" type="button" class="btn btn-save btn-add" (click)="submitTask()">Добавить</button>
+    <button *ngIf="!important" type="button" class="btn btn-save btn-right btn-important" (click)="showImportant(true)">Все</button>
+    <button *ngIf="important" type="button" class="btn btn-save btn-right btn-change btn-important" (click)="showImportant(false)">Только важные</button>
     <button *ngIf="!hidden" type="button" class="btn btn-save btn-right btn-change" (click)="hideTasks(true)">Показать</button>
     <button *ngIf="hidden" type="button" class="btn btn-save btn-right" (click)="hideTasks(false)">Скрыть</button>
   </div>

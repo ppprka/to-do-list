@@ -1,35 +1,33 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Task} from "../task";
 
 @Component({
   selector: 'app-item-list',
   templateUrl: './item-list.component.html',
   styleUrls: ['./item-list.component.css']
 })
-export class ItemListComponent implements OnInit {
+export class ItemListComponent {
 
-  @Input() public task!: string;
+  @Input() public task!: Task;
   @Input() public hideTasksFlag: boolean;
   @Output() public itemDeleted = new EventEmitter<void>();
-  @Output() public itemSave = new EventEmitter<string>();
+  @Output() public itemSave = new EventEmitter<Task>();
 
   public disabled: boolean = true;
 
-  constructor() { }
+  constructor() {
+  }
 
-  ngOnInit(): void {}
-
-  onEdit(task: string){
+  public onEdit(): void {
     this.disabled = false;
   }
 
-  onSave(task:string){
-    this.task = task;
+  public onSave(task: Task): void {
     this.disabled = true;
-    console.log(task)
-    this.itemSave.emit(this.task);
+    this.itemSave.emit(task);
   }
 
-  onDelete(task: string) {
+  public onDelete(): void {
     this.itemDeleted.emit();
   }
 

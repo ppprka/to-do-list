@@ -1,9 +1,10 @@
-<div *hideTasks="hideTasksFlag"  class="container">
-  <div class="row">
-    <input  type="text" class="form-control" [(ngModel)]="task" [readonly]="disabled" placeholder="{{task}}">
-    <button *ngIf="disabled" type="button" class="btn btn-save"  (click)="onEdit(task)" >Изменить</button>
+<div *hideTasks="hideTasksFlag" class="container">
+  <div class="row" [ngStyle]="{'border': task.isImportant ? '#fc9d62 solid' : '#cdcaf5 solid'}">
+    <input  type="text" class="form-control" [(ngModel)]="task.description"  placeholder="{{task.description}}" [readonly]="disabled">
+    <button *ngIf="disabled" type="button" class="btn btn-save"  (click)="onEdit()" >Изменить</button>
     <button *ngIf="!disabled" type="button" class="btn btn-save btn-change"  (click)="onSave(task)">Сохранить</button>
-    <button type="button" class="btn btn-save btn-right" (click)="onDelete(task)">Удалить</button>
+    <button type="button" class="btn btn-save btn-right" (click)="onDelete()">Удалить</button>
   </div>
 </div>
+
 

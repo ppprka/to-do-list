@@ -2,5 +2,12 @@
     <p [colorType]="color" class="header-logo header-text">TODO LIST</p>
     <button (click)="changeColor()" type="button" class="btn btn-save">Изменить цвет</button>
 </nav>
-<app-add-button (submitSend)="addTask($event)" (hideTasksFlag)="hideTasks()"></app-add-button>
-<app-item-list *ngFor="let task of tasks; let index = index" [hideTasksFlag]="hideTasksFlag" [task]="task" (itemDeleted)="deleteTask(index)" (itemSave)="saveTask($event, index)"></app-item-list>
+<app-add-button (submitSend)="addTask($event)" (hideTasksFlag)="hideTasks()" (showImportantFlag)="showImportant()"></app-add-button>
+<div *ngIf="!showImportantFlag">
+  <app-item-list *ngFor="let task of tasks; let index = index" [hideTasksFlag]="hideTasksFlag" [task]="task"
+                 (itemDeleted)="deleteTask(index)" (itemSave)="saveTask($event, index)"></app-item-list>
+</div>
+<div *ngIf="showImportantFlag">
+  <app-item-list *ngFor="let task of tasksImportant; let index = index" [hideTasksFlag]="hideTasksFlag" [task]="task"
+                 (itemDeleted)="deleteTask(index)" (itemSave)="saveTask($event, index)"></app-item-list>
+</div>
