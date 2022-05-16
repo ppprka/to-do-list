@@ -20,6 +20,22 @@
   background-color: #efefef;
 }
 
+.input-part {
+  display: flex;
+  width: 100%
+}
+
 .btn-add {
-  margin-left: 0;
+  margin-right: 0.5rem;
+}
+
+.row-left {
+  width: 50%;
+  display: flex;
+  margin-left: 0.5rem;
+  margin-right: auto;
+}
+.row-right{
+  width: auto;
+  margin-right: 0.5rem;
 }
