@@ -8,6 +8,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ColorDirective } from './color-type.directive';
 import { HideDirective } from './item-list/hide.directive';
 import {StorageService} from "./storage.service";
+import { StringSplitPipe } from './item-list/string-split.pipe';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import {StorageService} from "./storage.service";
     AddButtonComponent,
     ItemListComponent,
     ColorDirective,
-    HideDirective
+    HideDirective,
+    StringSplitPipe
   ],
     imports: [
         BrowserModule,

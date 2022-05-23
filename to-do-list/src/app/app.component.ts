@@ -1,4 +1,4 @@
-import {AfterViewChecked, Component, OnChanges, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {StorageService} from "./storage.service";
 import {Task} from "./task";
 
@@ -7,10 +7,9 @@ import {Task} from "./task";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, OnChanges {
+export class AppComponent implements OnInit {
 
   public tasks: Task [] = [];
-  public tasksImportant: Task [] = [];
   public color: string = '';
   public hideTasksFlag: boolean = false;
   public showImportantFlag: boolean = false;
@@ -19,27 +18,16 @@ export class AppComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    let savedTasks: Task [] = this.storageService.getTasks();
-    this.tasks = savedTasks
-    this.tasksImportant = savedTasks.filter(item => item.isImportant);
-  }
-
-  ngOnChanges() {
     this.tasks = this.storageService.getTasks();
   }
 
   public addTask(task: Task): void {
     this.tasks.push(task);
-    if(task.isImportant){
-      this.tasksImportant.push(task);
-    }
-    this.tasks = this.tasks.sort((a: Task, b: Task) => a.isImportant === b.isImportant ? 0 : a.isImportant ? -1 : 1);
     this.storageService.saveTasks(this.tasks);
   }
 
   public deleteTask(index: number): void {
     this.tasks.splice(index, 1);
-    this.tasksImportant.splice(index, 1);
     this.storageService.saveTasks(this.tasks);
   }
 
@@ -53,11 +41,11 @@ export class AppComponent implements OnInit, OnChanges {
   }
 
   public hideTasks(): void {
-    this.hideTasksFlag ? this.hideTasksFlag = false : this.hideTasksFlag = true;
+    this.hideTasksFlag = !this.hideTasksFlag;
   }
 
   public showImportant(): void {
-    this.showImportantFlag ? this.showImportantFlag = false : this.showImportantFlag =true;
+    this.showImportantFlag = !this.showImportantFlag;
   }
 
 }

@@ -1,8 +1,12 @@
 <div *hideTasks="hideTasksFlag" class="container">
-  <div class="row" [ngStyle]="{'border': task.isImportant ? '#fc9d62 solid' : '#cdcaf5 solid'}">
-    <input  type="text" class="form-control" [(ngModel)]="task.description"  placeholder="{{task.description}}" [readonly]="disabled">
+  <div class="row" [formGroup]="form"  [ngStyle]="{'border': task.isImportant ? '#fc9d62 solid' : '#cdcaf5 solid'}">
+    <a *ngIf="disabled" class="form-control"> {{task.description | stringSplit}}</a>
+    <input *ngIf="!disabled"  type="text" class="form-control" formControlName="description" placeholder="{{this.form.getRawValue() | stringSplit}}">
+    <div class="btn btn-important check-div" [ngStyle]="{'background-color': task.isImportant ? '#fc9d62' : '#cdcaf5'}">
+      <input [attr.disabled]="disabled ? true : null"  type="checkbox" formControlName="isImportant" placeholder="{{task.isImportant}}">
+    </div>
     <button *ngIf="disabled" type="button" class="btn btn-save"  (click)="onEdit()" >Изменить</button>
-    <button *ngIf="!disabled" type="button" class="btn btn-save btn-change"  (click)="onSave(task)">Сохранить</button>
+    <button *ngIf="!disabled" type="button" class="btn btn-save btn-change"  (click)="onSave()">Сохранить</button>
     <button type="button" class="btn btn-save btn-right" (click)="onDelete()">Удалить</button>
   </div>
 </div>

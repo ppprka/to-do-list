@@ -9,28 +9,25 @@ import {EmailValidator, FormControl, FormGroup, Validators} from "@angular/forms
 })
 export class AddButtonComponent {
 
-  public task: Task = new Task();
   public form: FormGroup;
 
-  @Output() submitSend = new EventEmitter<Task>();
-  @Output() hideTasksFlag = new EventEmitter<void>();
-  @Output() showImportantFlag = new EventEmitter<void>();
+  @Output() public submitSend = new EventEmitter<Task>();
+  @Output() public hideTasksFlag = new EventEmitter<void>();
+  @Output() public showImportantFlag = new EventEmitter<void>();
 
   public hidden: boolean = true;
   public important: boolean = false;
 
   constructor() {
     this.form = new FormGroup({
-      task: new FormControl('', [Validators.required,Validators.nullValidator]),
-      important: new FormControl(null)
+      description: new FormControl('', [Validators.required,Validators.nullValidator]),
+      isImportant: new FormControl(null)
     })
   }
 
   public submitTask(): void {
-    this.task.description = this.form.get('task').value;
-    this.task.isImportant = this.form.get('important').value;
-    this.submitSend.emit(this.task);
-    this.task = new Task();
+    let task = this.form.getRawValue();
+    this.submitSend.emit(task);
     this.form.reset();
   }
 

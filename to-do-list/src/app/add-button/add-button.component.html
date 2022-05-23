@@ -1,20 +1,18 @@
 <div class="container">
   <div [formGroup]="form" class="row row-left">
     <div class="input-part">
-      <input type="text" class="form-control" formControlName="task" placeholder="Задача...">
+      <input type="text" class="form-control" formControlName="description" placeholder="Задача...">
       <div class="btn btn-save check-div">
         <label for="important">Важно</label>
-        <input type="checkbox" class="check-box" id="important" formControlName="important">
+        <input type="checkbox" class="check-box" id="important" formControlName="isImportant">
       </div>
-      <button [disabled]="!form.valid" type="button" class="btn btn-save btn-add" (click)="submitTask()">Добавить</button>
+      <button [disabled]="form.invalid" type="button" class="btn btn-save btn-add" (click)="submitTask()">Добавить</button>
     </div>
   </div>
   <div class="row row-right">
-    <div style="display: flex; margin-left: auto">
       <button *ngIf="!important" type="button" class="btn btn-save btn-right btn-important" (click)="showImportant(true)">Все</button>
       <button *ngIf="important" type="button" class="btn btn-save btn-right btn-change btn-important" (click)="showImportant(false)">Только важные</button>
       <button *ngIf="!hidden" type="button" class="btn btn-save btn-right btn-change" (click)="hideTasks(true)">Показать</button>
       <button *ngIf="hidden" type="button" class="btn btn-save btn-right" (click)="hideTasks(false)">Скрыть</button>
-    </div>
   </div>
 </div>
