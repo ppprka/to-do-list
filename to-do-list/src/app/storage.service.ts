@@ -1,19 +1,27 @@
 import {Injectable} from '@angular/core';
 import {Task} from "./task";
+import {Storage} from "@ionic/storage-angular";
 
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
 
-  constructor() {
+  private storageInitialised = false;
+
+  constructor(private storage: Storage) {}
+
+
+  async getTasks(): Promise<Task[]> {
+    if (!this.storageInitialised) await this.storage.create();
+
+    return (await this.storage.get('tasks')) || [];
   }
 
-  public saveTasks(tasks: Task[]): void {
-    localStorage.setItem('tasks', JSON.stringify(tasks))
+  async saveTasks(tasks: Task[]) {
+    if (!this.storageInitialised) await this.storage.create();
+
+    return this.storage.set('tasks', tasks);
   }
 
-  public getTasks(): Task[] {
-    return JSON.parse(localStorage.getItem('tasks')) || []
-  }
 }

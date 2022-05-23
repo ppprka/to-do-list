@@ -2,16 +2,14 @@
     <p [colorType]="color" class="header-logo header-text">TODO LIST</p>
     <button (click)="changeColor()" type="button" class="btn btn-save">Изменить цвет</button>
 </nav>
+
 <app-add-button (submitSend)="addTask($event)" (hideTasksFlag)="hideTasks()" (showImportantFlag)="showImportant()"></app-add-button>
-<!--<ng-container *ngIf="!showImportantFlag">-->
-<!--  <app-item-list *ngFor="let task of tasks; let index = index" [hideTasksFlag]="hideTasksFlag" [task]="task"-->
-<!--                 (itemDeleted)="deleteTask(index)" (itemSave)="saveTask($event, index)"></app-item-list>-->
-<!--</ng-container>-->
-<ng-container *ngFor="let task of tasks; let index = index" >
+
+<ng-container *ngFor="let task of allTasks$ | async; let index = index" >
   <app-item-list *ngIf="task.isImportant"  [hideTasksFlag]="hideTasksFlag" [task]="task"
-                 (itemDeleted)="deleteTask(index)" (itemSave)="saveTask($event, index)"></app-item-list>
+                 (itemDeleted)="deleteTask($event)" (itemSave)="addTask($event)"></app-item-list>
 </ng-container>
-<ng-container *ngFor="let task of tasks; let index = index" >
+<ng-container *ngFor="let task of allTasks$ | async; let index = index" >
   <app-item-list *ngIf="!task.isImportant && !showImportantFlag"  [hideTasksFlag]="hideTasksFlag" [task]="task"
-                 (itemDeleted)="deleteTask(index)" (itemSave)="saveTask($event, index)"></app-item-list>
+                 (itemDeleted)="deleteTask($event)" (itemSave)="addTask($event)"></app-item-list>
 </ng-container>

@@ -14,13 +14,14 @@ export class ItemListComponent implements OnChanges {
 
   @Input() public task!: Task;
   @Input() public hideTasksFlag: boolean;
-  @Output() public itemDeleted = new EventEmitter<void>();
+  @Output() public itemDeleted = new EventEmitter<Task>();
   @Output() public itemSave = new EventEmitter<Task>();
 
   public disabled: boolean = true;
 
   constructor() {
     this.form = new FormGroup({
+      id: new FormControl(null),
       description: new FormControl(null),
       isImportant: new FormControl(null)
     })
@@ -29,8 +30,8 @@ export class ItemListComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     let change = changes['task']?.currentValue;
     if (change) {
-      console.log(change)
       this.form.setValue({
+        id: change.id,
         description: change.description,
         isImportant: change.isImportant || false
       })
@@ -42,12 +43,13 @@ export class ItemListComponent implements OnChanges {
   }
 
   public onSave(): void {
+    console.log(this.form)
     this.disabled = true;
-    this.itemSave.emit(this.form.value);
+    this.itemSave.emit(<Task>this.form.value);
   }
 
-  public onDelete(): void {
-    this.itemDeleted.emit();
+  public onDelete(task: Task): void {
+    this.itemDeleted.emit(task);
   }
 
 

@@ -9,6 +9,14 @@ import { ColorDirective } from './color-type.directive';
 import { HideDirective } from './item-list/hide.directive';
 import {StorageService} from "./storage.service";
 import { StringSplitPipe } from './item-list/string-split.pipe';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { IonicModule } from '@ionic/angular';
+import {IonicStorageModule} from "@ionic/storage-angular";
+import {taskReducer} from "./state/tasks/task.reducer";
+import {TaskEffects} from "./state/tasks/task.effects";
 
 @NgModule({
   declarations: [
@@ -22,7 +30,18 @@ import { StringSplitPipe } from './item-list/string-split.pipe';
     imports: [
         BrowserModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        EffectsModule.forRoot([TaskEffects]),
+        StoreModule.forRoot({
+          tasks: taskReducer
+        }),
+        StoreDevtoolsModule.instrument({
+          maxAge: 25,
+          logOnly: environment.production
+        }),
+        IonicModule.forRoot(),
+        IonicStorageModule.forRoot(),
+
     ],
   providers: [StorageService],
   bootstrap: [AppComponent]

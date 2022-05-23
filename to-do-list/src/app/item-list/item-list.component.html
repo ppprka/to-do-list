@@ -7,7 +7,7 @@
     </div>
     <button *ngIf="disabled" type="button" class="btn btn-save"  (click)="onEdit()" >Изменить</button>
     <button *ngIf="!disabled" type="button" class="btn btn-save btn-change"  (click)="onSave()">Сохранить</button>
-    <button type="button" class="btn btn-save btn-right" (click)="onDelete()">Удалить</button>
+    <button type="button" class="btn btn-save btn-right" (click)="onDelete(task)">Удалить</button>
   </div>
 </div>
 
